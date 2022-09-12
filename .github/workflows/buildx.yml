@@ -28,8 +28,8 @@ jobs:
             --volume "${PWD}/artifacts:/artifacts"
 
           install: |
-            apt update -y
-            apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential
+            apt-get update -q -y
+            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential
             
             # build cmake
             cd
