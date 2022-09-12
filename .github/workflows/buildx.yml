@@ -16,10 +16,7 @@ jobs:
           arch: armv7
           distro: ubuntu18.04
 
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
+          install: |
             apt update -y
             apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential
             wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
@@ -29,7 +26,14 @@ jobs:
             make -j4
             make install
             cp libpython3.6m.so.1.0 /usr/lib/
+            python3 -m pip install --upgrade pip
+
+          run: |
+            uname -a
+            echo ::set-output name=uname::$(uname -a)
+
             python3 -V
+            pip3 -V
             pip3 install opencv-python==3.4.18.65
 
       - name: Get the output
