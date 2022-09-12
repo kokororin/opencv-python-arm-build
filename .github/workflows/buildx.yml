@@ -15,9 +15,17 @@ jobs:
           arch: armv7
           distro: ubuntu18.04
 
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
+
           install: |
             apt update -y
-            apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential
+            apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential cmake
             wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
             tar xvf Python-3.6.5.tgz
             cd Python-3.6.5
@@ -32,6 +40,7 @@ jobs:
 
             python3 -V
             pip3 -V
+            pip3 install cmake --progress-bar off
             pip3 install opencv-python --progress-bar off
 
             cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
