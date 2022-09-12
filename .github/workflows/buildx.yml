@@ -4,8 +4,8 @@ on: [push, pull_request]
 
 jobs:
   armv7-build:
-    runs-on: ubuntu-18.04
-    name: Build on ubuntu-18.04 armv7
+    runs-on: ubuntu-16.04
+    name: Build on ubuntu-16.04 armv7
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -13,7 +13,7 @@ jobs:
         name: Run commands
         with:
           arch: armv7
-          distro: ubuntu18.04
+          distro: ubuntu16.04
 
           # Create an artifacts directory
           setup: |
@@ -25,7 +25,19 @@ jobs:
 
           install: |
             apt update -y
-            apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential cmake
+            apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential
+            
+            # build cmake
+            cd
+            wget https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1.tar.gz
+            tar -zxvf cmake-3.24.1.tar.gz
+            cd cmake-3.24.1
+            ./bootstrap
+            make -j4
+            make install
+
+            # build python
+            cd
             wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
             tar xvf Python-3.6.5.tgz
             cd Python-3.6.5
@@ -40,10 +52,10 @@ jobs:
 
             python3 -V
             pip3 -V
-            pip3 install cmake --progress-bar off
-            pip3 install opencv-python --progress-bar off
+            # pip3 install cmake --progress-bar off
+            # pip3 install opencv-python --progress-bar off
 
-            cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
+            # cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
