@@ -15,6 +15,10 @@ jobs:
           arch: armv7
           distro: ubuntu16.04
 
+          # Not required, but speeds up builds by storing container images in
+          # a GitHub package registry.
+          githubToken: ${{ github.token }}
+
           # Create an artifacts directory
           setup: |
             mkdir -p "${PWD}/artifacts"
