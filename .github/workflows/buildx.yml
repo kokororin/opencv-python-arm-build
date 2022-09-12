@@ -20,6 +20,7 @@ jobs:
           run: |
             uname -a
             echo ::set-output name=uname::$(uname -a)
+            apt update -y
             apt install -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget
             wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
             tar xvf Python-3.6.5.tgz
