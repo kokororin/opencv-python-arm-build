@@ -28,9 +28,9 @@ jobs:
             ./configure --enable-shared --with-ssl
             make -j4
             make install
+            cp libpython3.6m.so.1.0 /usr/lib/
             python3 -V
-
-            # pip install opencv-python==3.4.18.65
+            pip3 install opencv-python==3.4.18.65
 
       - name: Get the output
         # Echo the `uname` output parameter from the `runcmd` step
