@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   armv7-build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     name: Build on ubuntu-16.04 armv7
     steps:
       - name: Checkout
