@@ -58,7 +58,14 @@ jobs:
             python3 -V
             pip3 -V
             # pip3 install cmake --progress-bar off
-            pip3 install opencv-python-headless
+            # pip3 install opencv-python-headless
+
+            # build opencv-python
+            git clone --recursive https://github.com/opencv/opencv-python.git
+            cd opencv-python
+            export ENABLE_CONTRIB=0
+            pip wheel . --verbose
+
             cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
