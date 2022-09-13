@@ -33,15 +33,17 @@ jobs:
             
             # build cmake
             cd
-            wget https://cmake.org/files/v3.24/cmake-3.24.1-linux-x86_64.tar.gz
-            tar xzvf cmake-3.24.1-linux-x86_64.tar.gz
-            mv cmake-3.24.1-linux-x86_64 /opt/cmake-3.24.1
-            ln -sf /opt/cmake-3.24.1/bin/*  /usr/bin/
+            wget -q https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1.tar.gz
+            tar -zxvf cmake-3.24.1.tar.gz
+            cd cmake-3.24.1
+            ./bootstrap
+            make -j4
+            make install
             cmake --version
 
             # build python
             cd
-            wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
+            wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
             tar xvf Python-3.6.5.tgz
             cd Python-3.6.5
             ./configure --enable-shared --with-ssl
@@ -56,9 +58,9 @@ jobs:
             python3 -V
             pip3 -V
             # pip3 install cmake --progress-bar off
-            # pip3 install opencv-python --progress-bar off
+            pip3 install opencv-python --progress-bar off
 
-            # cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
+            cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
