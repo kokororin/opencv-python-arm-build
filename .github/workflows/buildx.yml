@@ -58,9 +58,8 @@ jobs:
             python3 -V
             pip3 -V
             # pip3 install cmake --progress-bar off
-            pip3 install opencv-python --progress-bar off
-
-            cp -r /usr/lib/python3.6/site-packages /artifacts/site-packages
+            pip3 install opencv-python
+            cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
