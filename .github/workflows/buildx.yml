@@ -60,6 +60,8 @@ jobs:
             # pip3 install cmake --progress-bar off
             # pip3 install opencv-python-headless
 
+            apt-get install -q -y git curl
+
             # build opencv-python
             git clone --recursive https://github.com/opencv/opencv-python.git
             cd opencv-python
