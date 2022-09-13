@@ -58,7 +58,7 @@ jobs:
             python3 -V
             pip3 -V
             # pip3 install cmake --progress-bar off
-            pip3 install opencv-python==3.3.0.10
+            pip3 install opencv-python-headless
             cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
