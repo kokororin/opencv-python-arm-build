@@ -73,6 +73,7 @@ jobs:
                 -D INSTALL_PYTHON_EXAMPLES=ON \
                 -D OPENCV_GENERATE_PKGCONFIG=ON \
                 -D OPENCV_EXTRA_MODULES_PATH=~/opencv_build/opencv_contrib/modules \
+                -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
                 -D BUILD_EXAMPLES=ON ..
 
             make -j4
@@ -80,7 +81,7 @@ jobs:
 
             pkg-config --modversion opencv4
 
-            ls -la .
+            python3 -c "import cv2; print(cv2.__version__)"
 
             cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
