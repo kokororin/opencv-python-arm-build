@@ -29,27 +29,11 @@ jobs:
 
           install: |
             apt-get update -q -y
-            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip
+            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip sudo apt install software-properties-common
+            add-apt-repository -y ppa:jblgf0/python
+            apt-get update
+            apt-get install python3.6
             
-            # build cmake
-            cd
-            wget -q https://github.com/Kitware/CMake/releases/download/v3.24.1/cmake-3.24.1.tar.gz
-            tar -zxvf cmake-3.24.1.tar.gz
-            cd cmake-3.24.1
-            ./bootstrap
-            make -j4
-            make install
-            cmake --version
-
-            # build python
-            cd
-            wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
-            tar xvf Python-3.6.5.tgz
-            cd Python-3.6.5
-            ./configure --enable-shared --with-ssl
-            make -j4
-            make install
-            cp libpython3.6m.so.1.0 /usr/lib/
             python3 -m pip install --upgrade pip
             python3 -V
             pip3 -V
