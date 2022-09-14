@@ -29,7 +29,7 @@ jobs:
 
           install: |
             apt-get update -q -y
-            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build
+            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip
             
             # build cmake
             cd
@@ -51,12 +51,12 @@ jobs:
             make install
             cp libpython3.6m.so.1.0 /usr/lib/
             python3 -m pip install --upgrade pip
+            python3 -V
+            pip3 -V
 
           run: |
             uname -a
 
-            python3 -V
-            pip3 -V
             # pip3 install cmake --progress-bar off
             # pip3 install opencv-python-headless
 
@@ -67,6 +67,8 @@ jobs:
             cd opencv-python
             export ENABLE_CONTRIB=0
             pip wheel . --verbose
+
+            ls -la .
 
             cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
