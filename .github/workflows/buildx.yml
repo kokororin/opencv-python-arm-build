@@ -29,7 +29,7 @@ jobs:
 
           install: |
             apt-get update -q -y
-            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip sudo apt install software-properties-common
+            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip software-properties-common
             add-apt-repository -y ppa:jblgf0/python
             apt-get update
             apt-get install python3.6
