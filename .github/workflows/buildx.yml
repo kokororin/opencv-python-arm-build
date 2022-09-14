@@ -76,7 +76,7 @@ jobs:
                 -D PYTHON_DEFAULT_EXECUTABLE=$(which python3) \
                 -D BUILD_EXAMPLES=ON ..
 
-            make -j4
+            make -j8
             make install
 
             pkg-config --modversion opencv4
