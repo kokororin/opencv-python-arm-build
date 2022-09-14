@@ -30,7 +30,7 @@ jobs:
           install: |
             apt-get update -q -y
             apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build zip unzip software-properties-common
-            add-apt-repository -y ppa:jblgf0/python
+            add-apt-repository -y ppa:deadsnakes/ppa
             apt-get update
             apt-get install python3.6
             
@@ -44,17 +44,17 @@ jobs:
             # pip3 install cmake --progress-bar off
             # pip3 install opencv-python-headless
 
-            pip3 install cmake
+            # pip3 install cmake
 
             # build opencv-python
-            git clone --recursive https://github.com/opencv/opencv-python.git
-            cd opencv-python
-            export ENABLE_CONTRIB=0
-            pip wheel . --verbose
+            # git clone --recursive https://github.com/opencv/opencv-python.git
+            # cd opencv-python
+            # export ENABLE_CONTRIB=0
+            # pip wheel . --verbose
 
-            ls -la .
+            # ls -la .
 
-            cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
+            # cp -r /usr/local/lib/python3.6/site-packages /artifacts/site-packages
 
       - name: Show the artifact
         # Items placed in /artifacts in the container will be in
