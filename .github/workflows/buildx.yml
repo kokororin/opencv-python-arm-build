@@ -29,7 +29,7 @@ jobs:
 
           install: |
             apt-get update -q -y
-            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl
+            apt-get install -q -y zlib1g zlib1g-dev libffi-dev openssl libssl-dev wget build-essential git curl ninja-build
             
             # build cmake
             cd
@@ -59,6 +59,8 @@ jobs:
             pip3 -V
             # pip3 install cmake --progress-bar off
             # pip3 install opencv-python-headless
+
+            pip3 install cmake
 
             # build opencv-python
             git clone --recursive https://github.com/opencv/opencv-python.git
